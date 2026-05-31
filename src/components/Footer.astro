@@ -1,0 +1,26 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <span>© {year} Matías Roubaud · Cloud &amp; Data Engineering</span>
+    <span class="footer-loc">Montevideo, Uruguay 🇺🇾 · Remoto</span>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 0;
+    color: var(--text-dim);
+    font-size: 0.88rem;
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+</style>

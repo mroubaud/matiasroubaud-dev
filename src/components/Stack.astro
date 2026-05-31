@@ -1,0 +1,81 @@
+---
+const groups = [
+  {
+    title: "Cloud & Infra",
+    items: ["AWS", "Google Cloud", "Azure", "Terraform", "Docker", "Kubernetes"],
+  },
+  {
+    title: "Data",
+    items: ["Python", "SQL", "Airflow", "dbt", "Spark", "BigQuery / Snowflake"],
+  },
+  {
+    title: "Dev & Automatización",
+    items: ["TypeScript", "Node.js", "React / Astro", "Git", "CI/CD", "REST / GraphQL"],
+  },
+];
+---
+
+<section id="stack">
+  <div class="container">
+    <span class="eyebrow">Stack</span>
+    <h2 class="section-title">Herramientas que uso</h2>
+    <p class="section-intro">
+      Tecnologías probadas en producción. Elijo la herramienta según el problema,
+      no al revés.
+    </p>
+
+    <div class="stack-groups">
+      {groups.map((g) => (
+        <div class="stack-group">
+          <h3>{g.title}</h3>
+          <div class="chips">
+            {g.items.map((i) => <span class="chip">{i}</span>)}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .stack-groups {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+    margin-top: 48px;
+  }
+
+  .stack-group h3 {
+    font-size: 1.05rem;
+    color: var(--text);
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .chip {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    padding: 7px 14px;
+    border-radius: 999px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+
+  .chip:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  @media (max-width: 880px) {
+    .stack-groups { grid-template-columns: 1fr; gap: 32px; }
+  }
+</style>

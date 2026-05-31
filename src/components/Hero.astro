@@ -1,0 +1,178 @@
+---
+const stats = [
+  { value: "Cloud", label: "AWS · GCP · Azure" },
+  { value: "Data", label: "Pipelines & Warehousing" },
+  { value: "IT", label: "Automatización & DevOps" },
+];
+---
+
+<section id="top" class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Cloud &amp; Data Engineering</span>
+      <h1 class="hero-title">
+        Convierto datos e infraestructura en
+        <span class="grad">soluciones que escalan</span>.
+      </h1>
+      <p class="hero-sub">
+        Soy <strong>Matías Roubaud</strong>, ingeniero especializado en la nube y
+        en datos. Diseño arquitecturas, construyo pipelines y automatizo procesos
+        para que tu empresa opere más rápido, más barato y con datos confiables.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#contacto" class="btn btn-primary">Trabajemos juntos →</a>
+        <a href="#servicios" class="btn btn-ghost">Ver servicios</a>
+      </div>
+
+      <ul class="hero-stats">
+        {stats.map((s) => (
+          <li>
+            <span class="stat-value">{s.value}</span>
+            <span class="stat-label">{s.label}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="code-card">
+        <div class="code-bar">
+          <span></span><span></span><span></span>
+          <em>pipeline.py</em>
+        </div>
+        <pre><code><span class="c-key">from</span> pipeline <span class="c-key">import</span> extract, load
+
+<span class="c-fn">@orchestrate</span>(schedule=<span class="c-str">"@daily"</span>)
+<span class="c-key">def</span> <span class="c-fn">run</span>():
+    raw = extract.from_source(<span class="c-str">"crm"</span>)
+    clean = transform(raw).dedupe()
+    load.to_warehouse(clean, <span class="c-str">"analytics"</span>)
+    <span class="c-key">return</span> <span class="c-num">"✓ 1.2M rows"</span></code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding: 120px 0 80px;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 56px;
+    align-items: center;
+  }
+
+  .hero-title {
+    font-size: clamp(2.2rem, 5.2vw, 3.6rem);
+    margin: 4px 0 20px;
+    font-weight: 800;
+  }
+
+  .grad {
+    background: linear-gradient(120deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hero-sub {
+    color: var(--text-muted);
+    font-size: 1.12rem;
+    max-width: 560px;
+  }
+
+  .hero-sub strong { color: var(--text); }
+
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    margin: 32px 0;
+    flex-wrap: wrap;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+    border-top: 1px solid var(--border);
+    padding-top: 26px;
+  }
+
+  .stat-value {
+    display: block;
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--accent);
+  }
+
+  .stat-label {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+  }
+
+  /* Code card visual */
+  .code-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    transform: perspective(1200px) rotateY(-7deg) rotateX(3deg);
+  }
+
+  .code-bar {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 12px 16px;
+    background: var(--bg-soft);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .code-bar span {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #2c3650;
+  }
+
+  .code-bar span:nth-child(1) { background: #ff5f57; }
+  .code-bar span:nth-child(2) { background: #febc2e; }
+  .code-bar span:nth-child(3) { background: #28c840; }
+
+  .code-bar em {
+    margin-left: auto;
+    font-family: var(--mono);
+    font-style: normal;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+  }
+
+  pre {
+    padding: 22px 20px;
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    line-height: 1.85;
+    color: var(--text-muted);
+    overflow-x: auto;
+  }
+
+  .c-key { color: var(--accent-2); }
+  .c-fn { color: var(--accent); }
+  .c-str { color: #f0a868; }
+  .c-num { color: #b48ef0; }
+
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .hero-visual { order: -1; }
+    .code-card { transform: none; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-stats { gap: 20px; }
+  }
+</style>

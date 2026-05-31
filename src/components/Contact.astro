@@ -1,0 +1,45 @@
+---
+// 👉 Ajustá estos datos con los tuyos reales
+const email = "hola@matiasroubaud.dev";
+const linkedin = "https://www.linkedin.com/in/matiasroubaud";
+const github = "https://github.com/mroubaud";
+---
+
+<section id="contacto" class="contact">
+  <div class="container contact-inner">
+    <span class="eyebrow">Contacto</span>
+    <h2 class="section-title">¿Tenés un proyecto en mente?</h2>
+    <p class="section-intro contact-intro">
+      Contame qué necesitás y armamos una primera conversación sin compromiso.
+      Respondo en menos de 24 horas hábiles.
+    </p>
+
+    <div class="contact-actions">
+      <a href={`mailto:${email}`} class="btn btn-primary">✉️ {email}</a>
+      <a href={linkedin} target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
+      <a href={github} target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    text-align: center;
+  }
+
+  .contact-inner {
+    max-width: 640px;
+  }
+
+  .contact-intro {
+    margin: 0 auto;
+  }
+
+  .contact-actions {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 34px;
+  }
+</style>

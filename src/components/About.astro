@@ -1,0 +1,149 @@
+---
+const highlights = [
+  "Ingeniería aplicada a datos y nube en entornos productivos",
+  "Fundador de FingTwice, academia online para estudiantes de la FING (Uruguay)",
+  "Experiencia en industria tech trabajando con datos a escala",
+  "Enfoque pragmático: soluciones simples que se mantienen solas",
+];
+---
+
+<section id="sobre-mi" class="about">
+  <div class="container about-grid">
+    <div class="about-copy">
+      <span class="eyebrow">Sobre mí</span>
+      <h2 class="section-title">Ingeniero, no solo programador</h2>
+      <p>
+        Vengo de la ingeniería y eso marca cómo trabajo: entiendo el problema de
+        negocio antes de escribir una línea de código. Me apasiona ordenar el
+        caos de los datos y construir infraestructura que la gente no tiene que
+        andar mirando porque simplemente funciona.
+      </p>
+      <p>
+        Además de los proyectos de clientes, fundé <strong>FingTwice</strong>,
+        una academia online para estudiantes de la Facultad de Ingeniería en
+        Uruguay. Enseñar me obliga a explicar lo complejo de forma simple — y eso
+        se nota en cómo entrego soluciones claras y bien documentadas.
+      </p>
+
+      <ul class="highlights">
+        {highlights.map((h) => <li>{h}</li>)}
+      </ul>
+    </div>
+
+    <aside class="about-panel">
+      <h3>Cómo trabajo</h3>
+      <ol class="steps">
+        <li>
+          <span class="step-n">01</span>
+          <div>
+            <strong>Entender</strong>
+            <p>Relevo el problema, los datos y las restricciones reales.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-n">02</span>
+          <div>
+            <strong>Diseñar</strong>
+            <p>Propongo una arquitectura clara, con costos y tiempos sobre la mesa.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-n">03</span>
+          <div>
+            <strong>Construir</strong>
+            <p>Implemento con código mantenible, tests y CI/CD.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-n">04</span>
+          <div>
+            <strong>Entregar</strong>
+            <p>Documentación, traspaso de conocimiento y soporte.</p>
+          </div>
+        </li>
+      </ol>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .about { background: var(--bg-soft); border-block: 1px solid var(--border); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 56px;
+    align-items: start;
+  }
+
+  .about-copy p {
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    font-size: 1.04rem;
+  }
+
+  .about-copy strong { color: var(--text); }
+
+  .highlights {
+    list-style: none;
+    margin-top: 22px;
+    display: grid;
+    gap: 12px;
+  }
+
+  .highlights li {
+    position: relative;
+    padding-left: 30px;
+    color: var(--text-muted);
+    font-size: 0.97rem;
+  }
+
+  .highlights li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .about-panel {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 30px 28px;
+    position: sticky;
+    top: 90px;
+  }
+
+  .about-panel h3 {
+    font-size: 1.15rem;
+    margin-bottom: 22px;
+  }
+
+  .steps {
+    list-style: none;
+    display: grid;
+    gap: 22px;
+  }
+
+  .steps li {
+    display: flex;
+    gap: 16px;
+  }
+
+  .step-n {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    color: var(--accent);
+    padding-top: 2px;
+  }
+
+  .steps strong { display: block; margin-bottom: 2px; }
+  .steps p { color: var(--text-dim); font-size: 0.9rem; }
+
+  @media (max-width: 880px) {
+    .about-grid { grid-template-columns: 1fr; gap: 36px; }
+    .about-panel { position: static; }
+  }
+</style>
