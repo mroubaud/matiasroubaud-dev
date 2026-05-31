@@ -1,36 +1,47 @@
 ---
 const services = [
   {
-    icon: "☁️",
-    title: "Cloud Engineering",
-    desc: "Diseño y migración de infraestructura a la nube con foco en confiabilidad y costo.",
-    points: [
-      "Arquitectura en AWS, GCP y Azure",
-      "Infraestructura como código (Terraform)",
-      "Migraciones y optimización de costos",
-      "Contenedores y serverless",
-    ],
-  },
-  {
     icon: "🛢️",
     title: "Data Engineering",
-    desc: "Pipelines de datos robustos que alimentan analítica y modelos con datos confiables.",
+    desc: "Pipelines de datos escalables y gobernados que alimentan analítica y modelos con datos confiables.",
     points: [
-      "Pipelines ETL / ELT y orquestación",
-      "Data warehouses & lakehouses",
-      "Modelado de datos y calidad (dbt)",
-      "Integraciones y APIs de datos",
+      "Pipelines en AWS (S3, Athena, Aurora, ECS)",
+      "Infraestructura como código con Terraform",
+      "Modelado y gobierno de datos",
+      "Orquestación con EventBridge / Airflow",
     ],
   },
   {
-    icon: "⚙️",
-    title: "IT & Automatización",
-    desc: "Soluciones a medida que eliminan trabajo manual y conectan tus sistemas.",
+    icon: "📊",
+    title: "Analytics & BI",
+    desc: "Dashboards ejecutivos que transforman datos crudos en decisiones para la dirección.",
     points: [
-      "Automatización de procesos",
-      "CI/CD y prácticas DevOps",
-      "Integración de herramientas y SaaS",
-      "Consultoría técnica y soporte",
+      "Power BI, Tableau y AWS Grafana",
+      "KPIs y métricas de negocio",
+      "Reportes y self-service analytics",
+      "Storytelling con datos",
+    ],
+  },
+  {
+    icon: "🤖",
+    title: "AI / Machine Learning",
+    desc: "Modelos de ML de la idea a producción, integrados a tus procesos de decisión.",
+    points: [
+      "Desarrollo y despliegue en SageMaker",
+      "Modelos predictivos con Python / TensorFlow",
+      "MLOps y monitoreo de modelos",
+      "Casos de uso de IA aplicada",
+    ],
+  },
+  {
+    icon: "☁️",
+    title: "Cloud & IT Ops",
+    desc: "Infraestructura en la nube y operaciones IT/seguridad sobre el ecosistema Microsoft y AWS.",
+    points: [
+      "Arquitectura y optimización en AWS",
+      "Microsoft 365, Intune y Entra ID",
+      "Automatización (Power Automate, CI/CD)",
+      "Seguridad: Fortinet, Proofpoint",
     ],
   },
 ];
@@ -41,9 +52,9 @@ const services = [
     <span class="eyebrow">Servicios</span>
     <h2 class="section-title">En qué te puedo ayudar</h2>
     <p class="section-intro">
-      Trabajo de punta a punta: desde la arquitectura hasta la puesta en
-      producción. Tres áreas que se complementan para que tus datos y tu
-      infraestructura jueguen a favor del negocio.
+      Trabajo de punta a punta: desde la arquitectura de datos hasta la decisión
+      de negocio. Cuatro áreas que se complementan para que tus datos, tu nube y
+      tu IT jueguen a favor del negocio.
     </p>
 
     <div class="grid">
@@ -64,7 +75,7 @@ const services = [
 <style>
   .grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 22px;
     margin-top: 48px;
   }
@@ -127,7 +138,7 @@ const services = [
     font-weight: 700;
   }
 
-  @media (max-width: 880px) {
+  @media (max-width: 760px) {
     .grid { grid-template-columns: 1fr; }
   }
 </style>
