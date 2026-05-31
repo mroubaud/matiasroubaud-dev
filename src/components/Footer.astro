@@ -1,11 +1,19 @@
 ---
+import { getTranslations, type Lang } from "../i18n/ui";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = getTranslations(lang).footer;
+
 const year = new Date().getFullYear();
 ---
 
 <footer class="footer">
   <div class="container footer-inner">
-    <span>© {year} Matías Roubaud · Cloud &amp; Data Engineering</span>
-    <span class="footer-loc">Sopela, Bizkaia 🇪🇸 · Remoto / Worldwide</span>
+    <span>© {year} Matías Roubaud · {t.tagline}</span>
+    <span class="footer-loc">{t.location}</span>
   </div>
 </footer>
 

@@ -1,65 +1,24 @@
 ---
-const services = [
-  {
-    icon: "🛢️",
-    title: "Data Engineering",
-    desc: "Pipelines de datos escalables y gobernados que alimentan analítica y modelos con datos confiables.",
-    points: [
-      "Pipelines en AWS (S3, Athena, Aurora, ECS)",
-      "Infraestructura como código con Terraform",
-      "Modelado y gobierno de datos",
-      "Orquestación con EventBridge / Airflow",
-    ],
-  },
-  {
-    icon: "📊",
-    title: "Analytics & BI",
-    desc: "Dashboards ejecutivos que transforman datos crudos en decisiones para la dirección.",
-    points: [
-      "Power BI, Tableau y AWS Grafana",
-      "KPIs y métricas de negocio",
-      "Reportes y self-service analytics",
-      "Storytelling con datos",
-    ],
-  },
-  {
-    icon: "🤖",
-    title: "AI / Machine Learning",
-    desc: "Modelos de ML de la idea a producción, integrados a tus procesos de decisión.",
-    points: [
-      "Desarrollo y despliegue en SageMaker",
-      "Modelos predictivos con Python / TensorFlow",
-      "MLOps y monitoreo de modelos",
-      "Casos de uso de IA aplicada",
-    ],
-  },
-  {
-    icon: "☁️",
-    title: "Cloud & IT Ops",
-    desc: "Infraestructura en la nube y operaciones IT/seguridad sobre el ecosistema Microsoft y AWS.",
-    points: [
-      "Arquitectura y optimización en AWS",
-      "Microsoft 365, Intune y Entra ID",
-      "Automatización (Power Automate, CI/CD)",
-      "Seguridad: Fortinet, Proofpoint",
-    ],
-  },
-];
+import { getTranslations, type Lang } from "../i18n/ui";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = getTranslations(lang).services;
 ---
 
 <section id="servicios">
   <div class="container">
-    <span class="eyebrow">Servicios</span>
-    <h2 class="section-title">En qué te puedo ayudar</h2>
-    <p class="section-intro">
-      Trabajo de punta a punta: desde la arquitectura de datos hasta la decisión
-      de negocio. Cuatro áreas que se complementan para que tus datos, tu nube y
-      tu IT jueguen a favor del negocio.
-    </p>
+    <div class="reveal">
+      <span class="eyebrow">{t.eyebrow}</span>
+      <h2 class="section-title">{t.title}</h2>
+      <p class="section-intro">{t.intro}</p>
+    </div>
 
     <div class="grid">
-      {services.map((s) => (
-        <article class="card">
+      {t.items.map((s, i) => (
+        <article class="card reveal" style={`--reveal-delay: ${i * 90}ms`}>
           <div class="card-icon">{s.icon}</div>
           <h3>{s.title}</h3>
           <p class="card-desc">{s.desc}</p>
@@ -85,7 +44,7 @@ const services = [
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 30px 26px;
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    transition: transform 0.2s ease, border-color 0.2s ease, opacity 0.6s ease;
   }
 
   .card:hover {

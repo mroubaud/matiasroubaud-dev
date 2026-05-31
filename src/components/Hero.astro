@@ -1,34 +1,30 @@
 ---
-const stats = [
-  { value: "7+ años", label: "Datos a producción" },
-  { value: "AWS", label: "Cloud & Data Engineering" },
-  { value: "Data + AI", label: "BI, ML & Analytics" },
-];
+import { getTranslations, type Lang } from "../i18n/ui";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = getTranslations(lang).hero;
 ---
 
 <section id="top" class="hero">
   <div class="container hero-grid">
-    <div class="hero-copy">
-      <span class="eyebrow">Data Engineering &amp; Analytics Leader</span>
+    <div class="hero-copy reveal">
+      <span class="eyebrow">{t.eyebrow}</span>
       <h1 class="hero-title">
-        Convierto datos en
-        <span class="grad">decisiones que mueven el negocio</span>.
+        {t.titlePre}
+        <span class="grad">{t.titleHighlight}</span>.
       </h1>
-      <p class="hero-sub">
-        Soy <strong>Matías Roubaud</strong>, ingeniero con +7 años llevando datos
-        a producción de punta a punta: desde pipelines escalables en AWS hasta
-        dashboards ejecutivos y modelos de ML. Hoy lidero una función de Datos &amp;
-        AI, y ayudo a empresas a construir la infraestructura que necesitan para
-        decidir con datos confiables.
-      </p>
+      <p class="hero-sub" set:html={t.sub} />
 
       <div class="hero-actions">
-        <a href="#contacto" class="btn btn-primary">Trabajemos juntos →</a>
-        <a href="#servicios" class="btn btn-ghost">Ver servicios</a>
+        <a href="#contacto" class="btn btn-primary">{t.ctaPrimary}</a>
+        <a href="#servicios" class="btn btn-ghost">{t.ctaSecondary}</a>
       </div>
 
       <ul class="hero-stats">
-        {stats.map((s) => (
+        {t.stats.map((s) => (
           <li>
             <span class="stat-value">{s.value}</span>
             <span class="stat-label">{s.label}</span>
@@ -37,7 +33,7 @@ const stats = [
       </ul>
     </div>
 
-    <div class="hero-visual" aria-hidden="true">
+    <div class="hero-visual reveal" style="--reveal-delay: 120ms" aria-hidden="true">
       <div class="code-card">
         <div class="code-bar">
           <span></span><span></span><span></span>
@@ -87,7 +83,7 @@ const stats = [
     max-width: 560px;
   }
 
-  .hero-sub strong { color: var(--text); }
+  .hero-sub :global(strong) { color: var(--text); }
 
   .hero-actions {
     display: flex;

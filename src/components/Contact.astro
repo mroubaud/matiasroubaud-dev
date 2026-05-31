@@ -1,25 +1,78 @@
 ---
+import { getTranslations, type Lang } from "../i18n/ui";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = getTranslations(lang).contact;
+
 const email = "matiasroubaud@gmail.com";
 const linkedin = "https://www.linkedin.com/in/mat%C3%ADas-roubaud-93610133/";
 const github = "https://github.com/mroubaud";
+
+// Tras enviar, Netlify redirige a esta misma sección con ?ok=1
+const action = (lang === "es" ? "/" : "/en/") + "?ok=1#contacto";
 ---
 
 <section id="contacto" class="contact">
-  <div class="container contact-inner">
-    <span class="eyebrow">Contacto</span>
-    <h2 class="section-title">¿Tenés un proyecto en mente?</h2>
-    <p class="section-intro contact-intro">
-      Contame qué necesitás y armamos una primera conversación sin compromiso.
-      Respondo en menos de 24 horas hábiles.
-    </p>
+  <div class="container contact-inner reveal">
+    <span class="eyebrow">{t.eyebrow}</span>
+    <h2 class="section-title">{t.title}</h2>
+    <p class="section-intro contact-intro">{t.intro}</p>
 
+    <p class="form-success" id="form-success" hidden>{t.formSuccess}</p>
+
+    <form
+      name="contact"
+      method="POST"
+      action={action}
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      class="contact-form"
+    >
+      <input type="hidden" name="form-name" value="contact" />
+      <p class="hidden-field">
+        <label>No llenar: <input name="bot-field" /></label>
+      </p>
+
+      <div class="field-row">
+        <label class="field">
+          <span>{t.formName}</span>
+          <input type="text" name="name" required autocomplete="name" />
+        </label>
+        <label class="field">
+          <span>{t.formEmail}</span>
+          <input type="email" name="email" required autocomplete="email" />
+        </label>
+      </div>
+      <label class="field">
+        <span>{t.formMessage}</span>
+        <textarea name="message" rows="4" required></textarea>
+      </label>
+
+      <button type="submit" class="btn btn-primary">{t.formSubmit}</button>
+    </form>
+
+    <p class="contact-or">{t.or}</p>
     <div class="contact-actions">
-      <a href={`mailto:${email}`} class="btn btn-primary">✉️ {email}</a>
+      <a href={`mailto:${email}`} class="btn btn-ghost">✉️ {email}</a>
       <a href={linkedin} target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
       <a href={github} target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
     </div>
   </div>
 </section>
+
+<script>
+  // Mostrar el mensaje de éxito si volvemos con ?ok=1
+  if (new URLSearchParams(window.location.search).get("ok") === "1") {
+    const el = document.getElementById("form-success");
+    if (el) {
+      el.hidden = false;
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }
+</script>
 
 <style>
   .contact {
@@ -34,11 +87,84 @@ const github = "https://github.com/mroubaud";
     margin: 0 auto;
   }
 
+  .form-success {
+    margin: 26px auto 0;
+    max-width: 520px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    background: rgba(56, 214, 196, 0.12);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .contact-form {
+    margin: 34px auto 0;
+    max-width: 560px;
+    text-align: left;
+    display: grid;
+    gap: 16px;
+  }
+
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .field {
+    display: grid;
+    gap: 7px;
+  }
+
+  .field span {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .field input,
+  .field textarea {
+    width: 100%;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: border-color 0.15s ease;
+    resize: vertical;
+  }
+
+  .field input:focus,
+  .field textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  .contact-form button {
+    justify-self: start;
+  }
+
+  .hidden-field {
+    display: none;
+  }
+
+  .contact-or {
+    margin: 34px 0 14px;
+    color: var(--text-dim);
+    font-size: 0.88rem;
+  }
+
   .contact-actions {
     display: flex;
     gap: 14px;
     justify-content: center;
     flex-wrap: wrap;
-    margin-top: 34px;
+  }
+
+  @media (max-width: 520px) {
+    .field-row { grid-template-columns: 1fr; }
+    .contact-form button { justify-self: stretch; }
   }
 </style>

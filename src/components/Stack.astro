@@ -1,35 +1,27 @@
 ---
-const groups = [
-  {
-    title: "Data & AI",
-    items: ["Python", "SQL", "TensorFlow", "SageMaker", "Power BI", "Tableau"],
-  },
-  {
-    title: "Cloud & Infra",
-    items: ["AWS", "Terraform", "Docker", "Git", "AWS Grafana", "CI/CD"],
-  },
-  {
-    title: "Microsoft & IT / Seguridad",
-    items: ["Microsoft 365", "Intune", "Entra ID", "Power Automate", "Fortinet", "Proofpoint"],
-  },
-];
+import { getTranslations, type Lang } from "../i18n/ui";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = getTranslations(lang).stack;
 ---
 
 <section id="stack">
   <div class="container">
-    <span class="eyebrow">Stack</span>
-    <h2 class="section-title">Herramientas que uso</h2>
-    <p class="section-intro">
-      Tecnologías probadas en producción. Elijo la herramienta según el problema,
-      no al revés.
-    </p>
+    <div class="reveal">
+      <span class="eyebrow">{t.eyebrow}</span>
+      <h2 class="section-title">{t.title}</h2>
+      <p class="section-intro">{t.intro}</p>
+    </div>
 
     <div class="stack-groups">
-      {groups.map((g) => (
-        <div class="stack-group">
+      {t.groups.map((g, i) => (
+        <div class="stack-group reveal" style={`--reveal-delay: ${i * 90}ms`}>
           <h3>{g.title}</h3>
           <div class="chips">
-            {g.items.map((i) => <span class="chip">{i}</span>)}
+            {g.items.map((item) => <span class="chip">{item}</span>)}
           </div>
         </div>
       ))}

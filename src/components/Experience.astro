@@ -1,0 +1,113 @@
+---
+import { getTranslations, type Lang } from "../i18n/ui";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = getTranslations(lang).experience;
+---
+
+<section id="experiencia" class="experience">
+  <div class="container">
+    <div class="reveal">
+      <span class="eyebrow">{t.eyebrow}</span>
+      <h2 class="section-title">{t.title}</h2>
+      <p class="section-intro">{t.intro}</p>
+    </div>
+
+    <ol class="timeline">
+      {t.jobs.map((job, i) => (
+        <li class="tl-item reveal" style={`--reveal-delay: ${i * 70}ms`}>
+          <div class="tl-dot" aria-hidden="true"></div>
+          <div class="tl-content">
+            <div class="tl-head">
+              <h3>{job.role}</h3>
+              <span class="tl-period">{job.period}</span>
+            </div>
+            <span class="tl-company">{job.company}</span>
+            <p class="tl-desc">{job.desc}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .experience {
+    background: var(--bg-soft);
+    border-block: 1px solid var(--border);
+  }
+
+  .timeline {
+    list-style: none;
+    margin-top: 48px;
+    position: relative;
+    padding-left: 28px;
+  }
+
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: linear-gradient(var(--accent), var(--accent-2), transparent);
+    opacity: 0.5;
+  }
+
+  .tl-item {
+    position: relative;
+    padding-bottom: 34px;
+  }
+
+  .tl-item:last-child {
+    padding-bottom: 0;
+  }
+
+  .tl-dot {
+    position: absolute;
+    left: -28px;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px var(--bg-soft), 0 0 12px var(--accent-glow);
+  }
+
+  .tl-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .tl-head h3 {
+    font-size: 1.12rem;
+  }
+
+  .tl-period {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    white-space: nowrap;
+  }
+
+  .tl-company {
+    display: block;
+    color: var(--accent);
+    font-size: 0.92rem;
+    font-weight: 600;
+    margin: 2px 0 8px;
+  }
+
+  .tl-desc {
+    color: var(--text-muted);
+    font-size: 0.96rem;
+    max-width: 680px;
+  }
+</style>
