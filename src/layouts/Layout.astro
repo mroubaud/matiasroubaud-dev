@@ -12,6 +12,57 @@ const t = getTranslations(lang);
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const esUrl = new URL("/", Astro.site);
 const enUrl = new URL("/en/", Astro.site);
+const ogImage = new URL("/og.png", Astro.site);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://matiasroubaud.com/#person",
+      name: "Matías Roubaud",
+      alternateName: "Matías Gonzalo Roubaud Lazo",
+      url: "https://matiasroubaud.com",
+      image: ogImage.href,
+      jobTitle: "Data Engineering & Analytics Leader",
+      email: "mailto:matiasroubaud@gmail.com",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Sopela",
+        addressRegion: "Bizkaia",
+        addressCountry: "ES",
+      },
+      worksFor: { "@type": "Organization", name: "Basquevolt" },
+      knowsLanguage: ["es", "en", "fr"],
+      knowsAbout: [
+        "Data Engineering",
+        "Cloud Computing",
+        "Amazon Web Services",
+        "Analytics",
+        "Business Intelligence",
+        "Machine Learning",
+        "Terraform",
+        "Python",
+        "Power BI",
+      ],
+      sameAs: [
+        "https://www.linkedin.com/in/mat%C3%ADas-roubaud-93610133/",
+        "https://github.com/mroubaud",
+      ],
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://matiasroubaud.com/#service",
+      name: "Matías Roubaud — Data Engineering & Analytics",
+      url: "https://matiasroubaud.com",
+      image: ogImage.href,
+      description: t.meta.description,
+      provider: { "@id": "https://matiasroubaud.com/#person" },
+      areaServed: { "@type": "Place", name: "Worldwide" },
+      availableLanguage: ["es", "en"],
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -21,6 +72,8 @@ const enUrl = new URL("/en/", Astro.site);
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#0a0e1a" />
+    <meta name="author" content="Matías Roubaud" />
 
     <title>{t.meta.title}</title>
     <meta name="description" content={t.meta.description} />
@@ -33,11 +86,25 @@ const enUrl = new URL("/en/", Astro.site);
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Matías Roubaud" />
     <meta property="og:title" content={t.meta.title} />
     <meta property="og:description" content={t.meta.description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content={lang === "es" ? "es_ES" : "en_US"} />
+    <meta property="og:locale:alternate" content={lang === "es" ? "en_US" : "es_ES"} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Matías Roubaud — Data Engineering & Analytics" />
+
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={t.meta.title} />
+    <meta name="twitter:description" content={t.meta.description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Structured data -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

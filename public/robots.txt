@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://matiasroubaud.com/sitemap-index.xml
